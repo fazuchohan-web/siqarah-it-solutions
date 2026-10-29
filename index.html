@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siqarah IT Solutions | Laptop Retail & Repairing</title>
+  <meta name="description" content="Siqarah IT Solutions provides laptops, repairs, upgrades, accessories, and trusted technical support." />
+  <style>
+    :root{
+      --bg:#0b0f0d;
+      --bg-2:#121b17;
+      --panel:#15201a;
+      --panel-2:#1d2b25;
+      --primary:#d91f1f;
+      --primary-2:#9e1010;
+      --accent:#27b36a;
+      --accent-2:#1b8f52;
+      --text:#eefaf3;
+      --muted:#bfd7c9;
+      --line:rgba(255,255,255,0.08);
+      --shadow:0 18px 42px rgba(0,0,0,0.25);
+      --radius:24px;
+    }
+
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(39,179,106,0.12), transparent 28%),
+        linear-gradient(180deg, var(--bg), var(--bg-2));
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    img{ max-width:100%; display:block; }
+    a{ text-decoration:none; color:inherit; }
+    button, input, textarea { font:inherit; }
+
+    .container{ width:min(1180px, calc(100% - 32px)); margin:0 auto; }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(11,15,13,0.82);
+      backdrop-filter: blur(12px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav{
+      min-height:80px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:var(--text);
+    }
+
+    .brand-mark{
+      width:44px;
+      height:44px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:14px;
+      background:linear-gradient(135deg, var(--primary), var(--accent));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .brand-mark svg{ width:34px; height:34px; display:block; }
+    .brand-text{
+      font-weight:900;
+      font-size:0.82rem;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      color:var(--muted);
+      font-size:0.96rem;
+    }
+
+    .nav-links a:hover{ color:var(--text); }
+
+    .nav-actions{ display:flex; align-items:center; gap:12px; }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 24px;
+      border-radius:999px;
+      font-weight:700;
+      border:1px solid transparent;
+      cursor:pointer;
+      transition:0.25s ease;
+      text-decoration:none;
+    }
+
+    .btn:hover{ transform:translateY(-2px); }
+    .btn-primary{
+      background:linear-gradient(135deg, var(--primary), var(--primary-2));
+      color:#fff;
+      box-shadow:0 18px 35px rgba(217,31,31,0.25);
+    }
+    .btn-secondary{
+      background:transparent;
+      border-color:rgba(255,255,255,0.12);
+      color:#fff;
+    }
+
+    .hero{
+      background:
+        linear-gradient(120deg, rgba(0,0,0,0.76), rgba(0,0,0,0.52)),
+        url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      padding:92px 0 72px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      width:520px; height:520px;
+      border-radius:50%;
+      right:-120px; top:-150px;
+      background:rgba(39,179,106,0.14);
+      filter: blur(16px);
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      width:360px; height:360px;
+      left:-120px; bottom:-140px;
+      border-radius:50%;
+      background:rgba(217,31,31,0.08);
+      filter: blur(14px);
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:1.1fr 0.9fr;
+      gap:42px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.1);
+      background:rgba(255,255,255,0.04);
+      color:#e7fff0;
+      font-size:0.7rem;
+      font-weight:700;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(2.9rem, 5vw, 5.4rem);
+      line-height:1.04;
+      letter-spacing:-0.06em;
+    }
+
+    .hero p{
+      margin:18px 0 28px;
+      max-width:620px;
+      font-size:1.08rem;
+      color:rgba(255,255,255,0.8);
+    }
+
+    .hero-actions{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:24px;
+    }
+
+    .hero-stats{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      flex-wrap:wrap;
+      color:#fff;
+    }
+
+    .hero-stats strong{
+      display:block;
+      font-size:1.5rem;
+      margin-bottom:4px;
+      color:var(--accent);
+    }
+
+    .hero-stats span{ color:rgba(255,255,255,0.7); font-size:0.9rem; }
+
+    .hero-card{
+      background:rgba(21,32,26,0.7);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:28px;
+      padding:22px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .mini-box{
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:18px;
+      padding:18px 20px;
+      margin-bottom:16px;
+    }
+
+    .mini-box h3{ margin:0 0 8px; font-size:1.12rem; color:#fff; }
+    .mini-box p{ margin:0; color:rgba(255,255,255,0.75); }
+
+    .device-box{
+      background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    .screen{
+      height:180px;
+      border-radius:18px 18px 10px 10px;
+      background:linear-gradient(135deg, #f1f4f8, #dfe5ec);
+      position:relative;
+      overflow:hidden;
+      box-shadow: inset 0 0 25px rgba(0,0,0,0.08);
+    }
+
+    .screen::before{
+      content:"";
+      position:absolute;
+      inset:18px 20px 30px;
+      border-radius:12px;
+      background:linear-gradient(135deg, var(--accent), var(--accent-2));
+    }
+
+    .keyboard{
+      height:28px;
+      border-radius:0 0 12px 12px;
+      background:#b4bac3;
+      margin-top:6px;
+      position:relative;
+    }
+
+    .keyboard::before{
+      content:"";
+      position:absolute;
+      left:12%; right:12%;
+      top:7px; bottom:7px;
+      border-radius:8px;
+      background: rgba(0,0,0,0.12);
+    }
+
+    section{ padding:80px 0; }
+
+    .section-header{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:22px;
+      margin-bottom:30px;
+    }
+
+    .section-header h2{ margin:0; font-size: clamp(2.1rem, 3.4vw, 3.3rem); letter-spacing:-0.04em; }
+    .section-header p{ margin:0; color:var(--muted); max-width:560px; }
+
+    .services{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:22px; }
+    .service{
+      background:linear-gradient(180deg, rgba(21,32,26,0.98), rgba(13,15,14,0.98));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:26px 22px;
+      box-shadow:0 12px 28px rgba(0,0,0,0.12);
+    }
+
+    .icon{
+      width:60px; height:60px;
+      border-radius:18px;
+      display:grid; place-items:center;
+      margin-bottom:18px;
+      background:linear-gradient(135deg, rgba(217,31,31,0.18), rgba(39,179,106,0.14));
+      color:var(--accent);
+      font-weight:800;
+      font-size:1.5rem;
+    }
+
+    .service h3{ margin:0 0 10px; font-size:1.28rem; }
+    .service p{ margin:0; color:var(--muted); }
+
+    .about-grid{ display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:30px; }
+    .about-image{
+      min-height:500px;
+      border-radius:28px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.38)),
+        url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      box-shadow: var(--shadow);
+    }
+
+    .about-box{
+      background:linear-gradient(180deg, #17211c, #0f1513);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:28px 26px;
+    }
+
+    .about-box h3{ margin:0 0 12px; font-size:2rem; letter-spacing:-0.04em; }
+    .about-box p{ margin:0 0 16px; color:var(--muted); }
+
+    .check-list{ display:grid; gap:12px; margin-top:16px; }
+    .check{ display:flex; align-items:flex-start; gap:12px; font-weight:600; }
+    .check-mark{
+      width:22px; height:22px;
+      display:grid; place-items:center;
+      border-radius:50%;
+      background:rgba(39,179,106,0.14);
+      color:#7fe7a8;
+      font-weight:700;
+      flex-shrink:0;
+      margin-top:2px;
+    }
+
+    .stats-grid{ display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:20px; }
+    .stat{
+      background:linear-gradient(180deg, #17211c, #0f1513);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:28px 18px;
+      text-align:center;
+      box-shadow:0 12px 28px rgba(0,0,0,0.1);
+    }
+
+    .stat strong{
+      display:block;
+      font-size:2.2rem;
+      letter-spacing:-0.05em;
+      color:var(--accent);
+      margin-bottom:8px;
+    }
+    .stat span{ color:var(--muted); font-weight:600; }
+
+    .products{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:22px; }
+    .product{
+      background:linear-gradient(180deg, #17211c, #0f1513);
+      border:1px solid var(--line);
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow:0 12px 28px rgba(0,0,0,0.1);
+    }
+    .product-image{ height:250px; background-size:cover; background-position:center; }
+    .product-body{ padding:22px 20px 24px; }
+    .tag{
+      display:inline-block;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(39,179,106,0.12);
+      color:var(--accent);
+      font-size:0.72rem;
+      font-weight:700;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      margin-bottom:12px;
+    }
+    .product-body h3{ margin:0 0 8px; font-size:1.4rem; }
+    .product-body p{ margin:0 0 18px; color:var(--muted); }
+    .product-meta{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .price{ font-size:1.3rem; font-weight:800; color:#fff; }
+
+    .process{ display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:20px; }
+    .step{
+      background:linear-gradient(180deg, #17211c, #0f1513);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:24px 20px;
+      box-shadow:0 12px 28px rgba(0,0,0,0.1);
+    }
+    .num{
+      width:42px; height:42px;
+      display:grid; place-items:center;
+      border-radius:12px;
+      background:rgba(39,179,106,0.12);
+      color:var(--accent);
+      font-weight:800;
+      margin-bottom:16px;
+    }
+    .step h3{ margin:0 0 10px; font-size:1.2rem; }
+    .step p{ margin:0; color:var(--muted); }
+
+    .testimonials{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:22px; }
+    .testimonial{
+      background:linear-gradient(180deg, #17211c, #0f1513);
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:24px 22px;
+    }
+    .stars{ letter-spacing:0.2em; color:#f9de5a; margin-bottom:12px; }
+    .testimonial p{ margin:0 0 18px; color:var(--muted); }
+    .person{ display:flex; align-items:center; gap:12px; }
+    .avatar{
+      width:42px; height:42px;
+      border-radius:50%;
+      background:linear-gradient(135deg, rgba(217,31,31,0.2), rgba(39,179,106,0.15));
+      display:grid; place-items:center;
+      font-weight:700;
+      color:#fff;
+    }
+    .person strong{ display:block; font-size:0.96rem; }
+    .person span{ color:var(--muted); font-size:0.8rem; }
+
+    .cta-box{
+      background:linear-gradient(135deg, rgba(39,179,106,0.12), rgba(217,31,31,0.06));
+      border:1px solid var(--line);
+      border-radius:30px;
+      padding:26px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+    .cta-box h3{ margin:0 0 8px; font-size: clamp(1.9rem, 3vw, 2.8rem); letter-spacing:-0.04em; }
+    .cta-box p{ margin:0; color:var(--muted); }
+    .contact-links{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; color:#fff; font-weight:600; }
+    .contact-links a{ color:#fff; }
+
+    .map-wrap{
+      background:linear-gradient(180deg, #17211c, #0f1513);
+      border:1px solid var(--line);
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow: var(--shadow);
+    }
+    .map-wrap iframe{ display:block; width:100%; min-height:340px; border:0; }
+
+    .contact-form-wrap{
+      background:linear-gradient(180deg, #17211c, #0f1513);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:26px;
+    }
+
+    .form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .field{ display:flex; flex-direction:column; gap:8px; }
+    .field label{ font-weight:700; color:var(--text); }
+    .field input, .field textarea{
+      width:100%; background:#101c17; border:1px solid var(--line); border-radius:14px; padding:14px 16px; color:#fff; outline:none;
+    }
+    .field textarea{ min-height:140px; resize:vertical; }
+    .field input:focus, .field textarea:focus{ border-color: rgba(39,179,106,0.7); box-shadow:0 0 0 3px rgba(39,179,106,0.12); }
+
+    footer{ background:#0d110f; border-top:1px solid var(--line); padding:24px 0 36px; }
+    .footer-inner{ display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap; }
+    .footer-links{ display:flex; gap:18px; flex-wrap:wrap; color:var(--muted); }
+
+    .menu-toggle{ display:none; border:1px solid rgba(255,255,255,0.12); background:transparent; color:#fff; width:46px; height:46px; border-radius:12px; cursor:pointer; }
+
+    .floating-whatsapp {
+      position:fixed;
+      right:22px;
+      bottom:24px;
+      width:62px;
+      height:62px;
+      border-radius:50%;
+      background:linear-gradient(135deg, #25D366, #1eb857);
+      display:grid;
+      place-items:center;
+      box-shadow:0 12px 30px rgba(37,211,102,0.45);
+      z-index:1000;
+      text-decoration:none;
+      transition:0.25s ease;
+    }
+
+    .floating-whatsapp:hover { transform:translateY(-4px) scale(1.02); }
+    .floating-whatsapp svg{ width:30px; height:30px; display:block; }
+
+    @media (max-width: 980px){
+      .hero-inner, .about-grid, .form-grid { grid-template-columns:1fr; }
+      .services, .products, .stats-grid, .process, .testimonials { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .nav-links{ display:none; }
+      .menu-toggle{ display:block; }
+      .section-header{ display:block; }
+      .section-header p{ margin-top:12px; }
+    }
+
+    @media (max-width: 620px){
+      .services, .products, .stats-grid, .process, .testimonials { grid-template-columns:1fr; }
+      .hero-actions{ flex-direction:column; align-items:flex-start; }
+      .btn{ width:100%; }
+      .cta-box{ display:block; }
+      .contact-links{ margin-top:20px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand" aria-label="Siqarah IT Solutions">
+        <span class="brand-mark">
+          <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="iconG1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FF3B3B"/>
+                <stop offset="100%" stop-color="#27B36A"/>
+              </linearGradient>
+              <linearGradient id="iconG2" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#1B1E24"/>
+                <stop offset="100%" stop-color="#090B0F"/>
+              </linearGradient>
+            </defs>
+            <rect x="52" y="52" width="396" height="396" rx="90" fill="url(#iconG2)"/>
+            <rect x="66" y="66" width="368" height="368" rx="74" stroke="url(#iconG1)" stroke-width="10"/>
+            <path d="M160 193C160 177.536 172.536 165 188 165H284C299.464 165 312 177.536 312 193V222H326C349.196 222 368 240.804 368 264V280C368 303.196 349.196 322 326 322H160C136.804 322 118 303.196 118 280V264C118 240.804 136.804 222 160 222H160V193Z" fill="url(#iconG1)"/>
+            <path d="M137 307H359L382 354H114L137 307Z" fill="#0C0D10"/>
+            <path d="M279 132C256.242 111.345 220.401 108.649 194.481 124.185C172.661 137.526 157.5 161.367 157.5 188.5C157.5 214.1 170.264 236.406 192.189 248.331L236.489 273.778C247.344 280.454 254 290.56 254 302.058C254 317.379 241.532 330 226.306 330H179.5C169.284 330 161 321.716 161 311.5V305H127V311.5C127 347.182 156.818 377 192.5 377H225.5C264.237 377 295 346.237 295 307.5C295 279.814 279.613 255.416 255.835 242.819L213.516 219.5C201.489 213.019 194.5 200.634 194.5 187.5C194.5 171.472 206.012 158.5 222.146 158.5H258.5C272.031 158.5 283 169.469 283 183V188H318V183C318 153.176 293.324 128.5 263.5 128.5H279V132Z" fill="#F5F7FA"/>
+          </svg>
+        </span>
+        <span class="brand-text">Siqarah</span>
+      </div>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="menu-toggle" aria-label="Menu">☰</button>
+        <a href="#contact" class="btn btn-primary">Book Service</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <span class="eyebrow">Laptop Retail & Repairing</span>
+          <h1>Smart IT solutions for work, study, and business.</h1>
+          <p>
+            Siqarah IT Solutions provides reliable laptop sales, expert repair, performance upgrades, and trusted technical support for every kind of customer.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Get Service</a>
+            <a href="#services" class="btn btn-secondary">Explore Services</a>
+          </div>
+
+          <div class="hero-stats">
+            <div>
+              <strong>500+</strong>
+              <span>Laptops Sold</span>
+            </div>
+            <div>
+              <strong>1200+</strong>
+              <span>Repairs Done</span>
+            </div>
+            <div>
+              <strong>24/7</strong>
+              <span>Support</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="mini-box">
+            <h3>Fast laptop diagnosis</h3>
+            <p>Screen damage, battery issues, slow performance, and hardware repair handled with expert care.</p>
+          </div>
+
+          <div class="device-box">
+            <div class="screen"></div>
+            <div class="keyboard"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2>Our services</h2>
+          <p>Reliable laptop support and premium technology solutions tailored to your everyday needs.</p>
+        </div>
+
+        <div class="services">
+          <article class="service">
+            <div class="icon">L</div>
+            <h3>Laptop Retail</h3>
+            <p>Modern, dependable laptops for office use, study, business, and personal productivity.</p>
+          </article>
+
+          <article class="service">
+            <div class="icon">R</div>
+            <h3>Repair & Maintenance</h3>
+            <p>Screen replacements, keyboard repair, battery swaps, motherboard issues, and full checks.</p>
+          </article>
+
+          <article class="service">
+            <div class="icon">U</div>
+            <h3>Upgrades & Accessories</h3>
+            <p>SSD installations, RAM upgrades, cooling improvements, chargers, and essential accessories.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-image"></div>
+
+          <div class="about-box">
+            <h3>Built on trust, speed, and technical expertise.</h3>
+            <p>
+              Siqarah IT Solutions is dedicated to helping customers get the right laptop, repair damaged devices, and keep systems working smoothly for everyday life and business growth.
+            </p>
+            <p>
+              We focus on practical solutions, affordable prices, and dependable service from experienced professionals who understand real-world technology issues.
+            </p>
+
+            <div class="check-list">
+              <div class="check"><span class="check-mark">✓</span><span>Reliable hardware diagnostics</span></div>
+              <div class="check"><span class="check-mark">✓</span><span>Affordable and transparent pricing</span></div>
+              <div class="check"><span class="check-mark">✓</span><span>Quality parts and clean workmanship</span></div>
+              <div class="check"><span class="check-mark">✓</span><span>Support for home and business customers</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <h2>Results that matter</h2>
+          <p>We help people and businesses stay productive with dependable technology and responsive support.</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat"><strong>15k+</strong><span>Issues resolved</span></div>
+          <div class="stat"><strong>98%</strong><span>Customer satisfaction</span></div>
+          <div class="stat"><strong>7 Days</strong><span>Average turnaround</span></div>
+          <div class="stat"><strong>24/7</strong><span>Support access</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="container">
+        <div class="section-header">
+          <h2>Featured products</h2>
+          <p>Technology choices designed for study, work, creativity, and everyday use.</p>
+        </div>
+
+        <div class="products">
+          <article class="product">
+            <div class="product-image" style="background-image:url('https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="product-body">
+              <span class="tag">Laptop</span>
+              <h3>Business Laptop</h3>
+              <p>Fast, durable, and lightweight for office workflows and study tasks.</p>
+              <div class="product-meta">
+                <div class="price">Rs. 95,000</div>
+                <button class="btn btn-primary add-to-cart" data-name="Business Laptop" data-price="95000">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product">
+            <div class="product-image" style="background-image:url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="product-body">
+              <span class="tag">Upgrade</span>
+              <h3>SSD & RAM Upgrade</h3>
+              <p>Boost laptop speed and responsiveness with smart storage and memory upgrades.</p>
+              <div class="product-meta">
+                <div class="price">Rs. 18,500</div>
+                <button class="btn btn-primary add-to-cart" data-name="SSD & RAM Upgrade" data-price="18500">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product">
+            <div class="product-image" style="background-image:url('https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="product-body">
+              <span class="tag">Accessory</span>
+              <h3>Tech Accessories</h3>
+              <p>Chargers, mice, keyboards, cooling pads, and essential laptop accessories.</p>
+              <div class="product-meta">
+                <div class="price">Rs. 4,000</div>
+                <button class="btn btn-primary add-to-cart" data-name="Tech Accessories" data-price="4000">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <h2>How we work</h2>
+          <p>Simple process, clear communication, and dependable results from start to finish.</p>
+        </div>
+
+        <div class="process">
+          <div class="step"><div class="num">01</div><h3>Consult</h3><p>We listen to your issue and recommend the best repair or laptop solution.</p></div>
+          <div class="step"><div class="num">02</div><h3>Diagnose</h3><p>We inspect your device to find the root cause and identify the right fix.</p></div>
+          <div class="step"><div class="num">03</div><h3>Repair</h3><p>We perform the fix with professionalism, care, and quality replacement parts.</p></div>
+          <div class="step"><div class="num">04</div><h3>Deliver</h3><p>Your laptop is tested, cleaned, and returned ready for use.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="container">
+        <div class="section-header">
+          <h2>What clients say</h2>
+          <p>Trusted by students, professionals, and business owners who value honest service and strong results.</p>
+        </div>
+
+        <div class="testimonials">
+          <article class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>“My laptop was repaired quickly and the service was honest and professional. I would definitely call them again.”</p>
+            <div class="person">
+              <div class="avatar">A</div>
+              <div><strong>Ali R.</strong><span>Student</span></div>
+            </div>
+          </article>
+
+          <article class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>“They helped me choose a reliable laptop for my work and explained everything clearly. Great experience.”</p>
+            <div class="person">
+              <div class="avatar">M</div>
+              <div><strong>Muhammad H.</strong><span>Professional</span></div>
+            </div>
+          </article>
+
+          <article class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>“Fast repair service, good pricing, and excellent customer support. Highly recommended for tech issues.”</p>
+            <div class="person">
+              <div class="avatar">S</div>
+              <div><strong>Sarah K.</strong><span>Business Owner</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h3>Need help with your laptop?</h3>
+            <p>Talk to our team today for repairs, upgrades, or a new laptop purchase.</p>
+          </div>
+          <div class="contact-links">
+            <a href="tel:03466614663">03466614663</a>
+            <a href="mailto:fazuchohan@gmail.com">fazuchohan@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="map-wrap">
+          <iframe src="https://www.google.com/maps?q=Lahore%20Pakistan&z=12&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Siqarah IT Solutions location map"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="contact-form-wrap">
+          <div class="section-header">
+            <h2>Send us a message</h2>
+            <p>We will get back to you with the best solution for your laptop or tech problem.</p>
+          </div>
+
+          <form>
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Full Name</label>
+                <input id="name" type="text" placeholder="Enter your name" />
+              </div>
+
+              <div class="field">
+                <label for="phone">Phone Number</label>
+                <input id="phone" type="tel" placeholder="Enter your phone number" />
+              </div>
+
+              <div class="field">
+                <label for="email">Email Address</label>
+                <input id="email" type="email" placeholder="Enter your email" />
+              </div>
+
+              <div class="field">
+                <label for="service">Service Needed</label>
+                <input id="service" type="text" placeholder="Laptop repair, purchase, upgrade..." />
+              </div>
+
+              <div class="field" style="grid-column:1 / -1;">
+                <label for="message">Message</label>
+                <textarea id="message" placeholder="Tell us about your laptop issue or what you need..."></textarea>
+              </div>
+            </div>
+
+            <div style="margin-top:20px;">
+              <button class="btn btn-primary" type="submit">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="brand">
+        <span class="brand-mark">
+          <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="ficonG1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FF3B3B"/>
+                <stop offset="100%" stop-color="#27B36A"/>
+              </linearGradient>
+              <linearGradient id="ficonG2" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#1B1E24"/>
+                <stop offset="100%" stop-color="#090B0F"/>
+              </linearGradient>
+            </defs>
+            <rect x="52" y="52" width="396" height="396" rx="90" fill="url(#ficonG2)"/>
+            <rect x="66" y="66" width="368" height="368" rx="74" stroke="url(#ficonG1)" stroke-width="10"/>
+            <path d="M160 193C160 177.536 172.536 165 188 165H284C299.464 165 312 177.536 312 193V222H326C349.196 222 368 240.804 368 264V280C368 303.196 349.196 322 326 322H160C136.804 322 118 303.196 118 280V264C118 240.804 136.804 222 160 222H160V193Z" fill="url(#ficonG1)"/>
+            <path d="M137 307H359L382 354H114L137 307Z" fill="#0C0D10"/>
+            <path d="M279 132C256.242 111.345 220.401 108.649 194.481 124.185C172.661 137.526 157.5 161.367 157.5 188.5C157.5 214.1 170.264 236.406 192.189 248.331L236.489 273.778C247.344 280.454 254 290.56 254 302.058C254 317.379 241.532 330 226.306 330H179.5C169.284 330 161 321.716 161 311.5V305H127V311.5C127 347.182 156.818 377 192.5 377H225.5C264.237 377 295 346.237 295 307.5C295 279.814 279.613 255.416 255.835 242.819L213.516 219.5C201.489 213.019 194.5 200.634 194.5 187.5C194.5 171.472 206.012 158.5 222.146 158.5H258.5C272.031 158.5 283 169.469 283 183V188H318V183C318 153.176 293.324 128.5 263.5 128.5H279V132Z" fill="#F5F7FA"/>
+          </svg>
+        </span>
+      </div>
+
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <a class="floating-whatsapp" href="https://wa.me/923466614663?text=Hello%20Siqarah%20IT%20Solutions%2C%20I%20want%20to%20order%20a%20laptop%20or%20repair%20service." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="#fff">
+      <path d="M19.11 17.93c-.29-.15-1.69-.83-1.95-.93-.26-.1-.45-.15-.64.15-.19.29-.73.93-.9 1.12-.17.18-.33.21-.62.07-.29-.15-1.23-.45-2.35-1.46-.87-.78-1.45-1.74-1.62-2.04-.17-.29-.02-.45.13-.6.13-.13.29-.33.43-.5.14-.17.19-.29.29-.49.1-.2.05-.37-.02-.52-.07-.15-.64-1.56-.88-2.13-.23-.56-.46-.48-.64-.49l-.54-.01c-.19 0-.5.07-.76.37-.26.29-1 .98-1 2.39 0 1.41 1.03 2.78 1.17 2.97.14.19 2.02 3.08 4.9 4.32.68.29 1.22.46 1.63.59.68.22 1.3.19 1.79.12.55-.08 1.69-.69 1.92-1.35.23-.67.23-1.25.16-1.36-.07-.1-.26-.17-.55-.32Z"/>
+      <path d="M16 3.5C9.36 3.5 4 8.86 4 15.5c0 2.36.67 4.63 1.82 6.58L4.5 28.5l6.58-1.45A12.5 12.5 0 0 0 16 27.5c6.64 0 12-5.36 12-12s-5.36-12-12-12Zm0 21.06c-1.97 0-3.89-.53-5.55-1.53l-.4-.24-3.9.86 1.02-3.79-.26-.4A9.54 9.54 0 0 1 6.5 15.5c0-5.25 4.25-9.5 9.5-9.5s9.5 4.25 9.5 9.5-4.25 9.5-9.5 9.5Z"/>
+    </svg>
+  </a>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => {
+        const shouldOpen = navLinks.style.display !== 'flex';
+        navLinks.style.display = shouldOpen ? 'flex' : 'none';
+        navLinks.style.position = 'absolute';
+        navLinks.style.top = '78px';
+        navLinks.style.left = '18px';
+        navLinks.style.right = '18px';
+        navLinks.style.flexDirection = 'column';
+        navLinks.style.padding = '18px';
+        navLinks.style.background = '#101c17';
+        navLinks.style.border = '1px solid rgba(255,255,255,0.08)';
+        navLinks.style.borderRadius = '18px';
+        navLinks.style.boxShadow = '0 18px 42px rgba(0,0,0,0.25)';
+        navLinks.style.zIndex = '60';
+      });
+    }
+
+    document.querySelectorAll('.add-to-cart').forEach((button) => {
+      button.addEventListener('click', () => {
+        const productName = button.dataset.name || 'Product';
+        const productPrice = button.dataset.price || '0';
+        const msg = encodeURIComponent(`Hello Siqarah IT Solutions, I want to buy: ${productName} - Rs. ${productPrice}`);
+        window.open(`https://wa.me/923466614663?text=${msg}`, '_blank');
+        button.textContent = 'Added';
+        button.disabled = true;
+        button.style.opacity = '0.8';
+      });
+    });
+
+    document.querySelector('form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const service = document.getElementById('service').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      const text = encodeURIComponent(
+        `Hello Siqarah IT Solutions,\nName: ${name || 'N/A'}\nPhone: ${phone || 'N/A'}\nEmail: ${email || 'N/A'}\nService: ${service || 'N/A'}\nMessage: ${message || 'N/A'}`
+      );
+      window.open(`https://wa.me/923466614663?text=${text}`, '_blank');
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
